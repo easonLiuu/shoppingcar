@@ -9,7 +9,7 @@
       >
       </MyGoods>
     </div>    
-    <MyFooter></MyFooter>
+    <MyFooter @changeAll="allFn" :arr="list"></MyFooter>
   </div>
 </template>
 
@@ -36,6 +36,12 @@ export default {
       console.log(res)
       this.list = res.data.list
     })
+  },
+  methods: {
+    allFn(bool){
+      //全选
+      this.list.forEach(obj => obj.goods_state = bool)
+    }
   }
 }
 </script>
