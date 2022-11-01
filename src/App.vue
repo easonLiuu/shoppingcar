@@ -1,7 +1,14 @@
 <template>
   <div>
-    <MyHeader></MyHeader>
-    <MyGoods></MyGoods>
+    <MyHeader background="red" title="购物车案例"></MyHeader>
+    <div class="main">
+      <MyGoods 
+        v-for="obj in list" 
+        :key="obj.id"
+        :obj="obj"
+      >
+      </MyGoods>
+    </div>    
     <MyFooter></MyFooter>
   </div>
 </template>
@@ -16,10 +23,26 @@ export default {
     MyHeader,
     MyGoods,
     MyFooter
+  },
+  data(){
+    return {
+      list: []
+    }
+  },
+  created(){
+    this.$axios({
+      url: "/api/cart"
+    }).then(res => {
+      console.log(res)
+      this.list = res.data.list
+    })
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+  .main {
+    padding-top: 45px;
+    padding-bottom: 50px;
+  }
 </style>

@@ -1,14 +1,28 @@
 <template>
-    <div class="my-header">购物车案例</div>
-  </template>
+    <div 
+        class="my-header" 
+        :style="{backgroundColor: background, color}"
+    >{{ title }}</div>
+</template>
   
-  <script>
+<script>
+  //Header自定义
   export default {
-  
+    props: {
+        background: String, // 外部传入必须是字符串
+        color: {
+            type: String,
+            default: "#fff"
+        },
+        title: {
+            type: String,
+            required: true
+        }
+    }
   }
-  </script>
+</script>
   
-  <style lang="less" scoped>
+<style lang="less" scoped>
     .my-header {
       height: 45px;
       line-height: 45px;
@@ -21,4 +35,4 @@
       width: 100%;
       z-index: 2;
     }
-  </style>
+</style>
