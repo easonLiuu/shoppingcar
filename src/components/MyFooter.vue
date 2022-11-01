@@ -9,7 +9,7 @@
       <!-- 合计 -->
       <div>
         <span>合计:</span>
-        <span class="price">¥ 0</span>
+        <span class="price">¥ {{ allPrice }}</span>
       </div>
       <!-- 按钮 -->
       <button type="button" class="footer-btn btn btn-primary">结算 ( {{ allCount }} )</button>
@@ -37,6 +37,14 @@
             sum += obj.goods_count
           }
           return sum          
+        }, 0)
+      },
+      allPrice(){
+        return this.arr.reduce((sum, obj) => {
+          if(obj.goods_state) {
+            sum += obj.goods_count * obj.goods_price
+          }
+          return sum 
         }, 0)
       }
     }    
